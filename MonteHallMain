@@ -1,0 +1,46 @@
+public class MonteHallMain {
+	public int trials = 100000;
+	public int answerArray[] = new int [3]; //Makes Array with three elements
+	public int stayChoicesCount = 0, moveChoicesCount = 0;
+	public double stayChoicesCountPercentage, moveChoicesCountPercentage;
+	
+	public static void main(String[] args) {
+		MonteHallMain obj1 = new MonteHallMain();
+	}
+	
+	public MonteHallMain() {
+		for(int i = 0; i < trials; i++) {	
+		
+			answerArray[0] = 0;
+			answerArray[1] = 0;
+			answerArray[2] = 0;
+			
+			int answerAtElement = (int)(Math.random() * 3); //Assigns the 'answer' at one element
+			answerArray[answerAtElement] = 1;
+			System.out.println(answerArray[0] + "," + answerArray[1] + "," + answerArray[2]); //Prints the full array with '1' being the answer
+		
+			int chosenIndex = (int)(Math.random() * 3); //Chooses a random index to guess the answer at
+			System.out.println(chosenIndex);
+		
+			if(answerArray[chosenIndex] == 1) {
+				System.out.println("Correct choice to stay"); 
+				stayChoicesCount++;
+			}
+			else {
+				System.out.println("Correct choice to move"); 
+				moveChoicesCount++;
+			}
+		}
+		
+		stayChoicesCountPercentage = ((double)stayChoicesCount / (double)trials) * 100;
+		moveChoicesCountPercentage = ((double)moveChoicesCount / (double)trials) * 100;
+		
+		System.out.println("");
+		System.out.println("Number of correct guesses by staying: " + stayChoicesCount);
+		System.out.println("Number of correct guesses by moving: " + moveChoicesCount);
+		System.out.println("");
+		
+		System.out.println("Percentage guesses correct by staying: " + stayChoicesCountPercentage);
+		System.out.println("Percentage guesses correct by moving: " + moveChoicesCountPercentage);
+	}
+}
